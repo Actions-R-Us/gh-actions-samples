@@ -1,0 +1,27 @@
+name: Set step parameter from environment
+
+on:
+  issues:
+    type: [opened, reopened]
+
+jobs:
+  build:
+    # https://developer.github.com/v3/activity/events/types/#issuesevent
+    if: contains(github.event.issue.title, "step_param_from_env")
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Export param script
+      run: echo "::set-env name=MY_ACTION_SCRIPT::.github/step_param_from_env.sh"
+      shell: bash
+    - name: github-action-tester
+      uses: skx/github-action-tester@release-0.10
+      with:
+        script: "{{MY_ACTION_SCRIPT}}"
+    - uses: actions/github-script@0.3.0
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: >
+          github.issues.update({
+            ...context.issue, state: 'closed'
+          })
