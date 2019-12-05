@@ -1,8 +1,10 @@
 name: Set step parameter from environment
 
 on:
+  issue_comment:
   issues:
     types: [opened, reopened]
+  
 
 jobs:
   build:
