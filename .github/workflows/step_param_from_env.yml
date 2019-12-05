@@ -2,12 +2,12 @@ name: Set step parameter from environment
 
 on:
   issues:
-    type: [opened, reopened]
+    types: [opened, reopened]
 
 jobs:
   build:
     # https://developer.github.com/v3/activity/events/types/#issuesevent
-    if: contains(github.event.issue.title, "step_param_from_env")
+    if: contains(github.event.issue.title, 'step_param_from_env')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
