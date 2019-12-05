@@ -6,7 +6,7 @@ Each action will run when it detects an issue with it's name was created. It doe
 
 ---
 
-# Ready:question: [Go:bangbang:](#I-want-to)
+# Ready:question: [Go:bangbang:](#i-want-to)
 <br/>
 
 ## I want to...
