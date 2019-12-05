@@ -16,15 +16,15 @@ Each action will run when it detects an issue with it's name was created. It doe
 ## Passing Parameters...
 - :outbox_tray: [Using an environment variable...](https://github.com/smac89/gh-actions-samples#creating-environment-variables)
 
-## Gathering Output
+### Gathering Output
 :speech_balloon: _In order to use the output from a step, you need atleast 3 things_
-1. Create an [id](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsid) for the step
+1. Create an [id](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsid) for the step. Mind the [syntax](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/metadata-syntax-for-github-actions#outputsoutput_id).
 2. Create the output(s) using the [`set-output`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/development-tools-for-github-actions#set-an-output-parameter-set-output) command
 3. [Use the id](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/contexts-and-expression-syntax-for-github-actions#steps-context) and the output name in another step
 
 :fast_forward: **See [`outputs_from_step.yml`](https://github.com/smac89/gh-actions-samples/blob/7f2c8c62158a5eeb7df4e187d9d3af3950185276/.github/workflows/outputs_from_step.yml#L20)**
 
-## Creating environment variables
+### Creating environment variables
 :speech_balloon: There are two ways to create [environment variables](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/using-environment-variables#about-environment-variables):
 
 - :information_source: By using the env keyword on the _entire workflow_, a _job_ or a _step_. See [`env`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#env). ***Note: This variable CAN be used in the same place where it was created***
