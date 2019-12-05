@@ -19,7 +19,7 @@ jobs:
     - name: github-action-tester
       uses: skx/github-action-tester@release-0.10
       with:
-        script: "${{MY_ACTION_SCRIPT}}"
+        script: "${{'MY_ACTION_SCRIPT'}}"
     - uses: actions/github-script@0.3.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
