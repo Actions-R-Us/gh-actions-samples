@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Export param script
+    - name: Export Script Parameter
       run: |
            echo "::set-env name=MY_ACTION_SCRIPT::.github/step_param_from_env.sh"
       shell: bash
@@ -20,7 +20,8 @@ jobs:
       uses: skx/github-action-tester@release-0.10
       with:
         script: "${{env.MY_ACTION_SCRIPT}}"
-    - uses: actions/github-script@0.3.0
+    - name: Close the issue that started this workflow
+      uses: actions/github-script@0.3.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: >
