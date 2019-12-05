@@ -16,12 +16,10 @@ jobs:
       run: |
            echo "::set-env name=MY_ACTION_SCRIPT::.github/step_param_from_env.sh"
       shell: bash
-    - name: Check environment context
-      run: echo "${{toJson(env)}}"
     - name: github-action-tester
       uses: skx/github-action-tester@release-0.10
       with:
-        script: "${{'MY_ACTION_SCRIPT'}}"
+        script: "${{env.MY_ACTION_SCRIPT}}"
     - uses: actions/github-script@0.3.0
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
