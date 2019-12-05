@@ -8,13 +8,12 @@ on:
 jobs:
   build:
     # https://developer.github.com/v3/activity/events/types/#issuesevent
-    # if: contains(github.event.issue.title, 'step_param_from_env')
+    if: contains(github.event.issue.title, 'step_param_from_env')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Export param script
       run: |
-           echo "${{toJson(github.event)}}" | jq
            echo "::set-env name=MY_ACTION_SCRIPT::.github/step_param_from_env.sh"
       shell: bash
     - name: github-action-tester
