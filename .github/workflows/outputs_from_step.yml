@@ -11,10 +11,10 @@ jobs:
     steps:
     - name: Example Tests
       run: |
-           echo "::set-output name=Integration-Tests::2 Integration Tests Failed!"
-           echo "::set-output name=Unit-Tests::All Unit Tests Passed!"
+           echo "::set-output name=Integration-Tests::2 Integration Tests Failed!\n"
+           echo "::set-output name=Unit-Tests::All Unit Tests Passed!\n"
       id: run_tests
     - name: Gather Outputs Of Tests
       run: |
         echo All the outputs:
-        echo "${{toJson(steps.run_tests.outputs)}}"
+        echo "${{join(steps.run_tests.outputs.*, '\n')}}"
