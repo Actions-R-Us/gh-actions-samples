@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.title, 'outputs_from_step')
     steps:
-    - uses: actions/checkout@v1
     - name: Example Tests
       run: |
            echo "::set-output name=Integration-Tests::2 Integration Tests Failed!"
