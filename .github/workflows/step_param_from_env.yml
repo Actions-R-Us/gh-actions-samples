@@ -1,7 +1,6 @@
 name: Set step parameter from environment
 
 on:
-  issue_comment:
   issues:
     types: [opened, reopened]
   
@@ -15,7 +14,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Export param script
       run: |
-           echo "${{github.event}}" | jq
+           echo "${{toJson(github.event)}}" | jq
            echo "::set-env name=MY_ACTION_SCRIPT::.github/step_param_from_env.sh"
       shell: bash
     - name: github-action-tester
