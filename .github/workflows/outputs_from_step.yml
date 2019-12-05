@@ -1,0 +1,21 @@
+name: Get outputs from previous step
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.title, 'outputs_from_step')
+    steps:
+    - uses: actions/checkout@v1
+    - name: Example Tests
+      run: |
+           echo "::set-output name=Integration-Tests::2 Integration Tests Failed!"
+           echo "::set-output name=Unit-Tests::All Unit Tests Passed!"
+      id: run_tests
+    - name: Gather Outputs Of Tests
+      run: |
+        echo All the outputs:
+        echo "${{toJson(steps.run_tests.outputs)}}"
