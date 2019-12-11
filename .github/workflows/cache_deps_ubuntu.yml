@@ -19,11 +19,13 @@ jobs:
           VALGRIND_VERSION: ${{secrets.VALGRIND_VERSION}}
         run: |
             if [[ "$CACHE_HIT" == 'true' ]]; then
+              echo "Using Cached version..."
               sudo cp --verbose --force --recursive ~/valgrind/* /
             else
+              echo "Install from repos..."
               sudo apt install --yes valgrind="$VALGRIND_VERSION"
               mkdir -p ~/valgrind
               sudo dpkg -L valgrind | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/valgrind/
             fi
-      - name: Use valgrind
+      - name: Use Valgrind
         run: valgrind --version --verbose
