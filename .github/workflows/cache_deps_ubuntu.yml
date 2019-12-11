@@ -15,7 +15,7 @@ jobs:
           key: ${{secrets.VALGRIND_VERSION}}
       - name: Install valgrind
         env:
-          CACHE_HIT: "${{steps.cache-valgrind.outputs.cache-hit}}"
+          CACHE_HIT: "${{toJson(steps.cache-valgrind.outputs)}}"
           VALGRIND_VERSION: "${{secrets.VALGRIND_VERSION}}"
         run: |
             echo "$CACHE_HIT"
@@ -24,7 +24,7 @@ jobs:
               sudo cp --verbose --force --recursive ~/valgrind/* /
             else
               echo "Install from repos..."
-              sudo apt install --yes valgrind="$VALGRIND_VERSION"
+              sudo apt-get install --yes valgrind="$VALGRIND_VERSION"
               mkdir -p ~/valgrind
               sudo dpkg -L valgrind | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/valgrind/
             fi
