@@ -1,6 +1,6 @@
 # gh-actions-samples
 
-The purpose of this repo is to answer questions one might have about github actions, through examples. After you have seen the examples in this repo, you may want to also run them which is why **anyone can test the actions by creating an issue that contains the action file's name (without the extension)**.
+The purpose of this repo is to answer questions one might have about github actions, through examples. After you have seen the examples in this repo, you may want to also run them which is why **anyone can test some of the actions by creating an issue that contains the action file's name (without the extension)**.
 
 Each action will run when it detects an issue with it's name was created. It does this through the help of the [`issues`](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#issues-event-issues) event.
 
