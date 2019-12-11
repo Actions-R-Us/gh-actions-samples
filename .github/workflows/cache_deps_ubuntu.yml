@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cache valgrind
-        uses: actions/cache@v1
+        uses: actions/cache@v1.0.3
         with:
           id: cache-valgrind
           path: "~/valgrind"
@@ -18,6 +18,7 @@ jobs:
           CACHE_HIT: ${{steps.cache-valgrind.outputs.cache-hit}}
           VALGRIND_VERSION: ${{secrets.VALGRIND_VERSION}}
         run: |
+            echo "$CACHE_HIT"
             if [[ "$CACHE_HIT" == 'true' ]]; then
               echo "Using Cached version..."
               sudo cp --verbose --force --recursive ~/valgrind/* /
