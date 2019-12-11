@@ -15,8 +15,8 @@ jobs:
           key: ${{secrets.VALGRIND_VERSION}}
       - name: Install valgrind
         env:
-          CACHE_HIT: ${{steps.cache-valgrind.outputs.cache-hit}}
-          VALGRIND_VERSION: ${{secrets.VALGRIND_VERSION}}
+          CACHE_HIT: "${{steps.cache-valgrind.outputs.cache-hit}}"
+          VALGRIND_VERSION: "${{secrets.VALGRIND_VERSION}}"
         run: |
             echo "$CACHE_HIT"
             if [[ "$CACHE_HIT" == 'true' ]]; then
