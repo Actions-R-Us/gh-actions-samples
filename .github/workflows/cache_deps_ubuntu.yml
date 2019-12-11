@@ -1,7 +1,12 @@
 name: Cache an ubuntu dependency like valgrind
 
 on:
-  [push, pull_request]
+  push:
+    paths: ['.github/workflows/cache_deps_ubuntu.yml']
+    branches: ['master']
+  pull_request:
+    paths: ['.github/workflows/cache_deps_ubuntu.yml']
+    branches: ['master']
 
 jobs:
   build:
