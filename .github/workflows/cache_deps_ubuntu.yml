@@ -36,8 +36,7 @@ jobs:
       - name: Install Other Deps
         run: |
           sudo apt-get update
-          sudo apt-get upgrade
-          sudo apt-get install gcc libc6-dbg
+          sudo apt-get install --yes gcc libc6-dbg
       - name: Use Valgrind
         run: |
           gcc .github/leaky_main.c
