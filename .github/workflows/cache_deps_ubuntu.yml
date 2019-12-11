@@ -1,0 +1,28 @@
+name: Cache an ubuntu dependency like valgrind
+
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.title, 'cache_deps_ubuntu')
+    steps:
+      - name: Cache valgrind
+        uses: actions/cache@v1
+        with:
+          id: cache-valgrind
+          path: "~/valgrind"
+          key: ${{secrets.VALGRIND_VERSION}}
+      - name: Install valgrind
+        run: |
+            if [[ ${{steps.cache-valgrind.outputs.cache-hit}} == 'true' ]]; then
+              cp --verbose --force --recursive ~/valgrind/* /
+            else
+              apt install --yes valgrind=${{secrets.VALGRIND_VERSION}}
+              mkdir -p ~/valgrind
+              dpkg -L valgrind | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/valgrind/
+            fi
+      - name: Use valgrind
+        run: valgrind --version --verbose
