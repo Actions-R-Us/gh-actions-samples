@@ -6,7 +6,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-#     if: contains(github.event.issue.title, 'cache_deps_ubuntu')
     steps:
       - name: Cache valgrind
         uses: actions/cache@v1
