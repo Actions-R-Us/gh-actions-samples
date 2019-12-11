@@ -34,7 +34,10 @@ jobs:
               sudo dpkg -L valgrind | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/valgrind/
             fi
       - name: Install Other Deps
-        run: sudo apt-get install gcc
+        run: |
+          sudo apt-get update
+          sudo apt-get upgrade
+          sudo apt-get install gcc libc6-dbg
       - name: Use Valgrind
         run: |
           gcc .github/leaky_main.c
