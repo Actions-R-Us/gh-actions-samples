@@ -12,6 +12,7 @@ jobs:
   build:
     env:
       VALGRIND_HOME: "$HOME/valgrind"
+      VALGRIND_LIB: "$HOME/valgrind/lib/valgrind" #https://www.linuxquestions.org/questions/linux-software-2/error-installing-valgrind-failed-to-start-tool-%27memcheck%27-850429/#post4193691
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1.2.0
