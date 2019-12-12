@@ -19,7 +19,7 @@ jobs:
         uses: actions/cache@v1.0.3
         id: cache-valgrind
         with:
-          path: "$VALGRIND_HOME"
+          path: "${{env.VALGRIND_HOME}}"
           key: ${{secrets.VALGRIND_VERSION}}
       - name: Install Valgrind
         env:
