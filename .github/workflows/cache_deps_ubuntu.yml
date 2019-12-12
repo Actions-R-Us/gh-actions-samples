@@ -10,6 +10,8 @@ on:
 
 jobs:
   build:
+    env:
+      VALGRIND_HOME: "$HOME/valgrind"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1.2.0
@@ -17,7 +19,7 @@ jobs:
         uses: actions/cache@v1.0.3
         id: cache-valgrind
         with:
-          path: "~/valgrind"
+          path: "$VALGRIND_HOME"
           key: ${{secrets.VALGRIND_VERSION}}
       - name: Install Valgrind
         env:
@@ -29,13 +31,13 @@ jobs:
             else
               echo "Install from source..."
               sudo apt-get update
-              curl -sSL $VALGRIND_SOURCE -o - | tar -xjv --one-top-level=valgrind --strip-components=1
+              curl -sSL "$VALGRIND_SOURCE" -o - | tar -xjv --one-top-level=valgrind --strip-components=1
               cd valgrind
-              ./configure --prefix=$HOME/valgrind/
+              ./configure --prefix="$VALGRIND_HOME"
               make -j
               make install
             fi
-            echo "::add-path::$HOME/valgrind/bin"
+            echo "::add-path::$VALGRIND_HOME/bin"
       - name: Install Other Deps
         run: |
          sudo apt-get install --yes libc6-dbg
