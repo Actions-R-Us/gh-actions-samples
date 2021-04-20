@@ -1,0 +1,22 @@
+name: Use an environment variable in format
+
+# https://stackoverflow.com/questions/59809764/how-to-reference-context-values-in-github-actions-expression-syntax
+
+on:
+  push:
+    paths: ['.github/workflows/ref-env.yml']
+    branches: ['master']
+  pull_request:
+    paths: ['.github/workflows/ref-env.yml']
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      MYVAR: ${{ format('{0}:{1}', env.PATH, env.HOME) }}
+
+    steps:
+    - name: Check environment
+      run: echo $MYVAR
