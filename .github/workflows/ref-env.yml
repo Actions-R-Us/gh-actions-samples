@@ -11,10 +11,14 @@ on:
     branches: ['master']
 
 jobs:
-  build:
+  env-from-shell:
     runs-on: ubuntu-latest
-
     steps:
       - run: printf "MYVAR=${PATH}:${HOME}" | tee --append "$GITHUB_ENV"
       - name: Check environment
         run: echo ${{env.MYVAR}}
+
+  env-dump-context:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ toJSON(env) }}
