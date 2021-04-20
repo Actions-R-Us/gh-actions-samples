@@ -15,6 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "MYVAR=${{ format('{0}:{1}', env.PATH, env.HOME) }}" | tee --append "$GITHUB_ENV"
+      - run: echo "MYVAR=${{ format('{0}:{1}', $PATH, $HOME) }}" | tee --append "$GITHUB_ENV"
       - name: Check environment
-        run: echo $MYVAR
+        run: echo ${{env.MYVAR}}
